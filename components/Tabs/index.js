@@ -17,9 +17,9 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
             const tab = tabCreator(topic);
             topics.appendChild(tab);
         })
-        .catch((err) => {
-        console.log("This is an error." , err)
-        });
+        //.catch((err) => {
+      //console.log("This is an error." , err)
+    //});
     });
 
  function tabCreator (tabName) {

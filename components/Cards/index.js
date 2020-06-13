@@ -43,9 +43,9 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
       const articleContent = cardCreator(article);
       newCard.appendChild(articleContent);
     })
-    .catch((err) => {
-      console.log("This is an error." , err)
-    });
+    //.catch((err) => {
+      //console.log("This is an error." , err)
+    //});
   });
 
 function cardCreator(obj) {
