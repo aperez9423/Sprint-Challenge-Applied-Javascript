@@ -23,11 +23,32 @@ const newCard = document.querySelector('.cards-container');
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
   .then((res) => {
     console.log("This is the response.", res);
-    const getCard = cardCreator(res);
-    newCard.appendChild(getCard);
+    res.data.articles.javascript.map(article => {
+      const articleContent = cardCreator(article);
+      newCard.appendChild(articleContent);
+    })
+    res.data.articles.bootstrap.map(article => {
+      const articleContent = cardCreator(article);
+      newCard.appendChild(articleContent);
+    })
+    res.data.articles.technology.map(article => {
+      const articleContent = cardCreator(article);
+      newCard.appendChild(articleContent);
+    })
+    res.data.articles.jquery.map(article => {
+      const articleContent = cardCreator(article);
+      newCard.appendChild(articleContent);
+    })
+    res.data.articles.node.map(article => {
+      const articleContent = cardCreator(article);
+      newCard.appendChild(articleContent);
+    })
+    .catch((err) => {
+      console.log("This is an error." , err)
     });
+  });
 
-function cardCreator({data}) {
+function cardCreator(obj) {
     //creating
     const card = document.createElement('div');
     const headline = document.createElement('div');
@@ -41,6 +62,7 @@ function cardCreator({data}) {
     headline.classList.add('headline');
     author.classList.add('author');
     imgContainer.classList.add('image-container');
+    img.style.width = '250px';
 
     //appending
     card.appendChild(headline);
@@ -50,12 +72,9 @@ function cardCreator({data}) {
     imgContainer.appendChild(img);   
 
     //update content
-    headline.textContent = data.articles.javascript.headline;
-    img.src = data.articles.javascript.authorPhoto;
-    by.textContent = data.articles.javascript.authorName;
-    headline.textContent = data.articles.bootstrap.headline;
-    img.src = data.articles.bootstrap.authorPhoto;
-    by.textContent = data.articles.bootstrap.authorName;
+    headline.textContent = obj.headline;
+    img.src = obj.authorPhoto;
+    by.textContent = obj.authorName;
 
     return card
 };
